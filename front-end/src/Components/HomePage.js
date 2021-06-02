@@ -10,8 +10,9 @@ const HomePage = () => {
 
     useEffect(() => {
         async function fetchBooks() {
-            const books = await getBooks();
-            setBooks(books);
+            const response = await getBooks();
+            console.log(response)
+            setBooks(response);
         }
         fetchBooks();
     }, []);
