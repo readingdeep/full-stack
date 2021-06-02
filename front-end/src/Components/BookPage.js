@@ -12,7 +12,6 @@ const BookPage = () => {
 
     const [loading, setLoading] = useState(true);
 
-    const [isPlayed, setIsPlayed] = useState(false);
     const audioElement = new Audio(soundFile);
 
     useEffect(() => {
@@ -22,7 +21,7 @@ const BookPage = () => {
             setLoading(false);
         }
         fetchBook(bookId);
-    }, [])
+    }, [bookId])
     
     return (
         <div>

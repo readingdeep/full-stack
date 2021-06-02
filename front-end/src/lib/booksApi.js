@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BaseUrl = `http://localhost:3000`;
+const BaseUrl = `http://localhost:3001`;
 
 export async function getBooks() {
     const response = await axios.get(`${BaseUrl}/books`);
