@@ -1,7 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { useParams, withRouter } from "react-router-dom";
-import { getBookById } from "../lib/booksApi";
+import { getBookById, getParagraphsMood } from "../lib/booksApi";
 
 let soundFile = process.env.PUBLIC_URL + "/Soundtracks/theRoots-youGotMe.mp3";
 
@@ -22,6 +22,11 @@ const BookPage = () => {
             const fetchedBook = await getBookById(bookId);
             setBook(fetchedBook);
             setBookPagesArray(fetchedBook.contents);
+            const arr = fetchedBook.contents.map((book) => {
+                return book.text;
+            });
+            const mood = await getParagraphsMood(arr);
+            console.log(mood);
             setLoading(false);
         }
         fetchBook(bookId);
@@ -53,7 +58,7 @@ const BookPage = () => {
                     {currentPage < bookPagesArray.length && (
                         <button
                             type="button"
-                            onClick={() => {console.log(currentPage); setCurrentPage(currentPage + 1);}}
+                            onClick={() => setCurrentPage(currentPage + 1)}
                         >
                             Next
                         </button>
