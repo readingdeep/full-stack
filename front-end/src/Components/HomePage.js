@@ -1,15 +1,45 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useState } from 'react';
 import uuid from 'react-uuid';
 import BookCard from './BookCard';
+import SearchComponent from './SearchComponent';
+import Books from "../Books/books.json";
 
 const HomePage = () => {
-    const [books, setBooks] = useState([{name:'Da Vinci Code', id:'1'}, {name:'Sapiens', id:'2'}, {name:'Genghis Khan', id:'3'}, {name: 'Les Miserables', id:'4'}, {name:'Notre-Dame de Paris', id:'5'}])
+    const [books, setBooks] = useState([]);
+    const [loading, setLoading] = useState(false);
+    
+    async function handleOnSearchSubmit(query) {
+        setLoading(true);
+        if (query.length === 0) {
+            setBooks(Books);
+            setLoading(false);
+            return;
+        }
+        const searchQuery = query.toLowerCase();
+        const queryArray = [];
+        for (const book of Books) {
+            const name = book.name.toLowerCase();
+            if (name.includes(searchQuery)) {
+                queryArray.push(book);
+            }
+        }
+        setBooks(queryArray);
+        setLoading(false);
+    }
+
+    useEffect(() => {
+        setBooks(Books);
+    }, [])
+
     return (
         <div>
-            {books.map(book =>
+            <SearchComponent onSubmit={(query) => handleOnSearchSubmit(query)}/>
+            {!loading && books.map(book =>
                 <BookCard key={uuid()} book={book} />
             )}
+            {books.length === 0 && <div>No Results Found!!</div>}
+            {loading && <div>Loading...</div>}
         </div> 
     )
 }
