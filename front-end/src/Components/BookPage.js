@@ -26,7 +26,6 @@ const BookPage = () => {
     const [loading, setLoading] = useState(true);
 
     const audioElement = new Audio(soundFile);
-    const [bookSong, setBookSong] = useState(audioElement);
 
     useEffect(() => {
         async function fetchBook(bookId) {
@@ -40,10 +39,37 @@ const BookPage = () => {
     }, [bookId]);
     
     const fetchData = async () => {
-    // const song = await getSongById(id)  Here we should get the song from database
-    // const feel = await getFeeling  Here we should get the feeling from DS
-    setBookSong(audioElement);
-    setFeeling(trust);
+        const feel = "trust" // get the feeling from DS
+        if ( feel === "anger") {
+            setFeeling(anger);
+        }
+        if ( feel === "anticipation") {
+            setFeeling(anticipation);
+        }
+        if ( feel === "disgust") {
+            setFeeling(disgust);
+        }
+        if ( feel === "fear") {
+            setFeeling(fear);
+        }
+        if ( feel === "joy") {
+            setFeeling(joy);
+        }
+        if ( feel === "negative") {
+            setFeeling(negative);
+        }
+        if ( feel === "positive") {
+            setFeeling(positive);
+        }
+        if ( feel === "sadness") {
+            setFeeling(sadness);
+        }
+        if ( feel === "surprise") {
+            setFeeling(surprise);
+        }
+        if ( feel === "trust") {
+            setFeeling(trust);
+        }
     };
 
     useEffect(() => {
@@ -58,8 +84,9 @@ const BookPage = () => {
                     <h1>{book.title}</h1>
                     <h2>{book.author}</h2>
                     <div
-                        // onMouseEnter={() => audioElement.play()}
-                        // onMouseLeave={() => audioElement.pause()}
+                        onMouseEnter={() => audioElement.play()}
+                        onMouseLeave={() => audioElement.pause()}
+                        onAuxClick={() => audioElement.pause()}
                     >
                         {!loading && (
                             <div>{bookPagesArray[currentPage - 1].text}</div>
