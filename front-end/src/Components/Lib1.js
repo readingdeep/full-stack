@@ -1,7 +1,7 @@
 import React from 'react';
-import soundFile from '../Soundtracks/theRoots-youGotMe.mp3';
 import { useState } from 'react';
 import ReactAudioPlayer from 'react-audio-player';
+let soundFile = process.env.PUBLIC_URL + '/Soundtracks/theRoots-youGotMe.mp3';
 
 /* Link to the library
 https://www.npmjs.com/package/react-audio-player

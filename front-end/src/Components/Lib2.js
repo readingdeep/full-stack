@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactPlayer from 'react-player';
-import soundFile from '../Soundtracks/theRoots-youGotMe.mp3';
 import { useState } from 'react';
+let soundFile = process.env.PUBLIC_URL + '/Soundtracks/theRoots-youGotMe.mp3';
 
 /* Link to the library
 https://github.com/cookpete/react-player#readme
