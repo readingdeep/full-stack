@@ -1,9 +1,11 @@
 const express = require('express');
-const { run } = require("./connect");
+const booksRouter = require("./routes/books");
 
 const app = express();
 app.use(require('cors')());
 app.use(express.json());
+
+app.use("/books", booksRouter);
 
 const port = 3000;
 
@@ -13,5 +15,4 @@ app.get('/', (req, res) => {
 
 app.listen(port, async () => {
    console.log(`Example app listening at http://localhost:${port}`);
-   await run().catch(console.dir);
 });

@@ -2,22 +2,39 @@ import React from 'react';
 import ReactAudioPlayer from 'react-audio-player';
 import soundFile from '../Soundtracks/theRoots-youGotMe.mp3';
 import { useState, useEffect } from 'react';
+import { useParams, withRouter } from 'react-router-dom';
+import { getBookById } from '../lib/booksApi';
 
 const BookPage = () => {
+    const params = useParams();
+    const { bookId } = params;
+    const [book, setBook] = useState();
+
+    const [loading, setLoading] = useState(true);
+
     const [isPlayed, setIsPlayed] = useState(false);
     const audioElement = new Audio(soundFile);
+
+    useEffect(() => {
+        async function fetchBook(bookId) {
+            const fetchedBook = await getBookById(bookId);
+            setBook(fetchedBook);
+            setLoading(false);
+        }
+        fetchBook(bookId);
+    }, [])
     
     return (
         <div>
             <div 
                 onMouseEnter={() => audioElement.play()}
                 onMouseLeave={() => audioElement.pause()}
-                
                 >
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                    {!loading && book.text}
+                    {loading && "Loading..."}
             </div>
         </div>
     )
 }
 
-export default BookPage;
+export default withRouter(BookPage);
