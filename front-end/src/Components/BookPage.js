@@ -1,9 +1,9 @@
 import React from 'react';
-import ReactAudioPlayer from 'react-audio-player';
-import soundFile from '../Soundtracks/theRoots-youGotMe.mp3';
 import { useState, useEffect } from 'react';
 import { useParams, withRouter } from 'react-router-dom';
 import { getBookById } from '../lib/booksApi';
+
+let soundFile = process.env.PUBLIC_URL + '/Soundtracks/theRoots-youGotMe.mp3';
 
 const BookPage = () => {
     const params = useParams();
@@ -13,6 +13,7 @@ const BookPage = () => {
     const [loading, setLoading] = useState(true);
 
     const audioElement = new Audio(soundFile);
+    const [bookSong, setBookSong] = useState(audioElement);
 
     useEffect(() => {
         async function fetchBook(bookId) {

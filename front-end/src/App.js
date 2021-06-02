@@ -8,8 +8,6 @@ import {
 import HomePage from './Components/HomePage';
 import BookPage from './Components/BookPage';
 import NavBar from './Components/NavBar';
-import Lib2 from './Components/Lib2';
-import Lib1 from './Components/Lib1';
 
 function App() {
   return (
@@ -22,8 +20,6 @@ function App() {
               <HomePage />
             </Route>
             <Route path='/book/:bookId'><BookPage /></Route>
-            <Route path='/lib2'><Lib2 /></Route>
-            <Route path='/lib1'><Lib1 /></Route>
           </div>
           </React.Fragment>
       </Switch>
