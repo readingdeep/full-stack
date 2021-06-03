@@ -14,10 +14,11 @@ const positive = 'positive.mp3';
 const sadness = 'sadness.mp3';
 const surprise = 'surprise.mp3';
 const trust = 'trust.mp3';
+const URL = process.env.PUBLIC_URL + '/Soundtracks/';
 
 const BookPage = () => {
-    const [feeling, setFeeling] = useState(); 
-    let soundFile = process.env.PUBLIC_URL + '/Soundtracks/' + feeling;
+    const [audioElement, setAudioElement] = useState();
+    console.log(audioElement);
     const params = useParams();
     const { bookId } = params;
     const [book, setBook] = useState();
@@ -25,8 +26,6 @@ const BookPage = () => {
     const [currentPage, setCurrentPage] = useState(1);
 
     const [loading, setLoading] = useState(true);
-
-    const audioElement = new Audio(soundFile);
 
     useEffect(() => {
         async function fetchBook(bookId) {
@@ -41,34 +40,34 @@ const BookPage = () => {
             console.log(mood[currentPage - 1]);
                 
             if ( mood[currentPage - 1] === "anger") {
-                setFeeling(anger);
+                setAudioElement(new Audio(URL + anger));
             }
             if ( mood[currentPage - 1] === "anticipation") {
-                setFeeling(anticipation);
+                setAudioElement(new Audio(URL + anticipation));
             }
             if ( mood[currentPage - 1] === "disgust") {
-                setFeeling(disgust);
+                setAudioElement(new Audio(URL + disgust));
             }
             if ( mood[currentPage - 1] === "fear") {
-                setFeeling(fear);
+                setAudioElement(new Audio(URL + fear));
             }
             if ( mood[currentPage - 1] === "joy") {
-                setFeeling(joy);
+                setAudioElement(new Audio(URL + joy));
             }
             if ( mood[currentPage - 1] === "negative") {
-                setFeeling(negative);
+                setAudioElement(new Audio(URL + negative));
             }
             if ( mood[currentPage - 1] === "positive") {
-                setFeeling(positive);
+                setAudioElement(new Audio(URL + positive));
             }
             if ( mood[currentPage - 1] === "sadness") {
-                setFeeling(sadness);
+                setAudioElement(new Audio(URL + sadness));
             }
             if ( mood[currentPage - 1] === "surprise") {
-                setFeeling(surprise);
+                setAudioElement(new Audio(URL + surprise));
             }
             if ( mood[currentPage - 1] === "trust") {
-                setFeeling(trust);
+                setAudioElement(new Audio(URL + trust));
             }
             setLoading(false);
         }

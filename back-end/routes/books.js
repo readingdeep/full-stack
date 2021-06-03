@@ -4,6 +4,7 @@ const router = express.Router();
 const { upload } = require('../middlewares/multi-part');
 const { uploadToCloudinary } = require('../lib/cloudinary');
 const fs = require('fs');
+const { getSearchResults } = require('../data/books');
 
 router.get("/", async (req, res, next) => {
     try {
@@ -31,6 +32,16 @@ router.put('/:bookId/book_pic', upload.single('image'), async (req,res) => {
     await updateBookPictureUrl(bookId, result.secure_url);
     fs.unlinkSync(req.file.path);
     res.send({ pictureUrl: result.secure_url });
+});
+
+router.post(`/search`, async (req, res, next) => {
+    try {
+        const { query } = req.body;
+        const searchResults = await getSearchResults(query);
+        res.send({ results: searchResults });
+    } catch (err) {
+        next(err);
+    }
 });
 
 

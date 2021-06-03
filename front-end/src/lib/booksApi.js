@@ -24,6 +24,9 @@ export async function getParagraphsMood(paragraphs) {
     } catch (err) {
         console.log(err);
     }
-    
-    
+}
+
+export async function searchBooks(query) {
+    const response = await axios.post(`${BaseUrl}/books/search`, { query: query });
+    return response.data.results;
 }

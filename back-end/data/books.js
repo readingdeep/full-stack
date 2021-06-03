@@ -55,3 +55,13 @@ exports.updateBookPictureUrl = updateBookPictureUrl;
 //     return query(sql);
 // }
 // exports.updatePetPictureUrl = updatePetPictureUrl;
+
+async function getSearchResults(query) {
+    try {
+        const booksArr = await books.find( { $or: [ { title: { $regex: query, $options: "i"} }, { author: { $regex: query, $options: "i"} } ] } ).toArray();
+        return booksArr;
+    } catch (err) {
+        console.log(err.stack);
+    }
+}
+exports.getSearchResults = getSearchResults;
