@@ -38,3 +38,20 @@ async function getBookById(bookId) {
   }
 }
 exports.getBookById = getBookById;
+
+async function updateBookPictureUrl(bookId, pictureUrl) {
+  try {
+    const book = await books.updateOne({
+        _id: ObjectId(bookId),
+      },
+      { $set: { pic: pictureUrl } });
+  } catch (err) {
+      console.log(err.stack);
+  }
+}
+exports.updateBookPictureUrl = updateBookPictureUrl;
+// function updatePetPictureUrl(petId, pictureUrl) {
+//     const sql = SQL`UPDATE pets SET profile_pic = ${pictureUrl} WHERE id = ${petId}`;
+//     return query(sql);
+// }
+// exports.updatePetPictureUrl = updatePetPictureUrl;
