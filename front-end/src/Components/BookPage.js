@@ -27,25 +27,6 @@ const BookPage = () => {
 
     const [loading, setLoading] = useState(true);
 
-    async function handleOnPlay() {
-        const audioPromise = audioElement.play();
-        if (audioPromise !== undefined) {
-            audioPromise.then(() => {
-              
-            }).catch(error => {
-              if (error.name === "NotAllowedError") {
-                
-              } else {
-                // Handle a load or playback error
-              }
-            });
-          }
-    }
-
-    async function handleOnPause() {
-        
-    }
-
     useEffect(() => {
         async function fetchBook(bookId) {
             setLoading(true);
@@ -114,13 +95,12 @@ const previousPage = () => {
                     <h2>{book.author}</h2>
                     <div 
                         className="page"
-                        onMouseEnter={() => handleOnPlay()}
+                        onMouseEnter={() => audioElement.play()}
                         onMouseLeave={() => audioElement.pause()}
                         onAuxClick={() => audioElement.pause()}
                     >
                     <div>{bookPagesArray[currentPage - 1].text}</div>
                     </div>
-                    <button onClick={() => audioElement.play()}>Play</button>
                     {currentPage > 1 && (
                         <button
                             type="button"
