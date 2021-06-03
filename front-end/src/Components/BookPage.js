@@ -2,6 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { useParams, withRouter } from "react-router-dom";
 import { getBookById } from "../lib/booksApi";
+import './BookPage.css';
 
 const anger = 'anger.mp3';
 const anticipation = 'anticipation.mp3';
@@ -83,7 +84,8 @@ const BookPage = () => {
                 <div>
                     <h1>{book.title}</h1>
                     <h2>{book.author}</h2>
-                    <div
+                    <div 
+                        className="page"
                         onMouseEnter={() => audioElement.play()}
                         onMouseLeave={() => audioElement.pause()}
                         onAuxClick={() => audioElement.pause()}

@@ -9,6 +9,9 @@ const BookCard = (props) => {
             <div>
                 {book.title}
             </div>
+            <div>
+                <img src={book.pic} alt="book cover" />
+            </div>
             <Link to={`/book/${book._id}`}>Read the book</Link>
         </div>
     )

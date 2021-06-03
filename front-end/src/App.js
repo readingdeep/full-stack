@@ -19,7 +19,9 @@ function App() {
             <Route exact path='/'>        
               <HomePage />
             </Route>
-            <Route path='/book/:bookId'><BookPage /></Route>
+            <Route path='/book/:bookId'>
+              <BookPage />
+            </Route>
           </div>
           </React.Fragment>
       </Switch>
