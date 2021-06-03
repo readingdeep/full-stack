@@ -6,6 +6,14 @@ background-color: ivory
     text-align: justify;
     margin: 3rem 10rem;
     font-family: monospace;
+    font-size: 10px;
+}
+
+.pageBig {
+    text-align: justify;
+    margin: 3rem 10rem;
+    font-family: monospace;
+    font-size: 20px;
 }
 
 .btn-style {

@@ -24,6 +24,7 @@ const BookPage = () => {
     const [book, setBook] = useState();
     const [bookPagesArray, setBookPagesArray] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
+    const [font, setFont] = useState("pageBig");
 
     const [loading, setLoading] = useState(true);
 
@@ -86,27 +87,42 @@ const previousPage = () => {
     audioElement.pause(); 
 }
 
+const changeFont = () => {
+    if (font === "page") {
+    setFont("pageBig")
+    } 
+    if (font === "pageBig") {
+    setFont("page")
+    } 
+}
+
     return (
         <div>
             {loading && "Loading..."}
             {!loading && (
                 <div>
                     <h1>{book.title}</h1>
-                    <h2>{book.author}</h2>
+                    <em><h2>{book.author}</h2></em>
+                    <div
+                        type="button"
+                        onClick={changeFont}
+                    >
+                        <u><b>Change font size</b></u>
+                    </div>
                     <div className='d-flex flex-row pn'>
                         {currentPage > 1 && (
                                 <div className="prev">
                                     <div
                                         className
                                         type="button"
-                                        onClick={() => setCurrentPage(currentPage - 1)}
+                                        onClick={previousPage}
                                     >
                                         <div className="btn-style">◀︎</div>
                                     </div>
                                 </div>
                             )}
                         <div 
-                            className="page"
+                            className={font}
                             onMouseEnter={() => audioElement.play()}
                             onMouseLeave={() => audioElement.pause()}
                             onAuxClick={() => audioElement.pause()}
@@ -119,7 +135,7 @@ const previousPage = () => {
                             <div
                                 className="next"
                                 type="button"
-                                onClick={() => setCurrentPage(currentPage + 1)}
+                                onClick={nextPage}
                             >
                                 <div className="btn-style">▶︎</div>
                             </div>
