@@ -12,7 +12,7 @@ const BookCard = (props) => {
             <div className='pic-wrapper'>
                 <img className='book-pic' src={book.pic} alt="book cover" />
             </div>
-            <Link className='card-link' to={`/book/${book._id}`}>Read the book</Link>
+            <Link className='card-link text-primary' to={`/book/${book._id}`}>Read the book</Link>
         </div>
     )
 }

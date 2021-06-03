@@ -1,8 +1,8 @@
 .book-wrapper {
-    border: 0px solid lightblue;
+    border: 0px solid #0275d8;
     width: 16rem;
     border-radius: 5%;
-    background-color: rgb(240,240,240);
+    background-color: antiquewhite;
     box-shadow: 3px 3px rgb(210,210,210);
 }
 
@@ -28,6 +28,8 @@
 
 .card-link {
     text-decoration: none;
+    color: #0275d8;
+    font-weight: 450;
 }
 
 .card-link:hover {

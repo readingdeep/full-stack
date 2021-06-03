@@ -4,3 +4,11 @@
     flex-flow:wrap;
     justify-content: center;
 }
+
+.logo {
+    width: 14rem;
+}
+
+.welcome {
+    FONT-FAMILY: unset;
+}

@@ -1,0 +1,15 @@
+.navbar {
+    height:2rem;
+}
+
+.home-link {
+    margin-left: 3rem;
+    text-decoration: none;
+    color: #6d1b1b;
+    font-weight: 700;
+    FONT-FAMILY: unset;
+}
+
+.home-link:hover {
+    color: brown;
+}

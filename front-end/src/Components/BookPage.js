@@ -83,32 +83,38 @@ const BookPage = () => {
                 <div>
                     <h1>{book.title}</h1>
                     <h2>{book.author}</h2>
-                    <div 
-                        className="page"
-                        onMouseEnter={() => audioElement.play()}
-                        onMouseLeave={() => audioElement.pause()}
-                        onAuxClick={() => audioElement.pause()}
-                    >
-                        {!loading && (
-                            <div>{bookPagesArray[currentPage - 1].text}</div>
+                    <div className='d-flex flex-row pn'>
+                        {currentPage > 1 && (
+                                <div className="prev">
+                                    <div
+                                        className
+                                        type="button"
+                                        onClick={() => setCurrentPage(currentPage - 1)}
+                                    >
+                                        <div className="btn-style">◀︎</div>
+                                    </div>
+                                </div>
+                            )}
+                        <div 
+                            className="page"
+                            onMouseEnter={() => audioElement.play()}
+                            onMouseLeave={() => audioElement.pause()}
+                            onAuxClick={() => audioElement.pause()}
+                        >
+                            {!loading && (
+                                <div>{bookPagesArray[currentPage - 1].text}</div>
+                            )}
+                        </div>
+                        {currentPage < bookPagesArray.length && (
+                            <div
+                                className="next"
+                                type="button"
+                                onClick={() => setCurrentPage(currentPage + 1)}
+                            >
+                                <div className="btn-style">▶︎</div>
+                            </div>
                         )}
                     </div>
-                    {currentPage > 1 && (
-                        <button
-                            type="button"
-                            onClick={() => setCurrentPage(currentPage - 1)}
-                        >
-                            Previous
-                        </button>
-                    )}
-                    {currentPage < bookPagesArray.length && (
-                        <button
-                            type="button"
-                            onClick={() => setCurrentPage(currentPage + 1)}
-                        >
-                            Next
-                        </button>
-                    )}
                 </div>
             )}
         </div>
