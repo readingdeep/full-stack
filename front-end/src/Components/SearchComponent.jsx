@@ -12,7 +12,6 @@ export default function SearchComponent(props) {
     return (
         <>
         <form onSubmit={(event) => handleOnSubmit(event)}>
-            <label htmlFor="search-input">Search for a book: </label>
             <input
                 type="text"
                 value={searchQuery}
