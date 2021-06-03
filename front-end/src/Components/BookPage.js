@@ -1,8 +1,8 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { useParams, withRouter } from "react-router-dom";
-import { getBookById } from "../lib/booksApi";
 import './BookPage.css';
+import { getBookById, getParagraphsMood } from "../lib/booksApi";
 
 const anger = 'anger.mp3';
 const anticipation = 'anticipation.mp3';
@@ -33,49 +33,48 @@ const BookPage = () => {
             const fetchedBook = await getBookById(bookId);
             setBook(fetchedBook);
             setBookPagesArray(fetchedBook.contents);
+            const arr = fetchedBook.contents.map((b) => {
+                return b.text;
+            });
+            const mood = await getParagraphsMood(arr);
+            console.log(mood[currentPage - 1]);
+                
+            if ( mood[currentPage - 1] === "anger") {
+                setFeeling(anger);
+            }
+            if ( mood[currentPage - 1] === "anticipation") {
+                setFeeling(anticipation);
+            }
+            if ( mood[currentPage - 1] === "disgust") {
+                setFeeling(disgust);
+            }
+            if ( mood[currentPage - 1] === "fear") {
+                setFeeling(fear);
+            }
+            if ( mood[currentPage - 1] === "joy") {
+                setFeeling(joy);
+            }
+            if ( mood[currentPage - 1] === "negative") {
+                setFeeling(negative);
+            }
+            if ( mood[currentPage - 1] === "positive") {
+                setFeeling(positive);
+            }
+            if ( mood[currentPage - 1] === "sadness") {
+                setFeeling(sadness);
+            }
+            if ( mood[currentPage - 1] === "surprise") {
+                setFeeling(surprise);
+            }
+            if ( mood[currentPage - 1] === "trust") {
+                setFeeling(trust);
+            }
             setLoading(false);
         }
+
         fetchBook(bookId);
 
-    }, [bookId]);
-    
-    const fetchData = async () => {
-        const feel = "trust" // get the feeling from DS
-        if ( feel === "anger") {
-            setFeeling(anger);
-        }
-        if ( feel === "anticipation") {
-            setFeeling(anticipation);
-        }
-        if ( feel === "disgust") {
-            setFeeling(disgust);
-        }
-        if ( feel === "fear") {
-            setFeeling(fear);
-        }
-        if ( feel === "joy") {
-            setFeeling(joy);
-        }
-        if ( feel === "negative") {
-            setFeeling(negative);
-        }
-        if ( feel === "positive") {
-            setFeeling(positive);
-        }
-        if ( feel === "sadness") {
-            setFeeling(sadness);
-        }
-        if ( feel === "surprise") {
-            setFeeling(surprise);
-        }
-        if ( feel === "trust") {
-            setFeeling(trust);
-        }
-    };
-
-    useEffect(() => {
-        fetchData();
-    }, []);
+    }, [bookId, currentPage]);
 
     return (
         <div>
@@ -105,7 +104,7 @@ const BookPage = () => {
                     {currentPage < bookPagesArray.length && (
                         <button
                             type="button"
-                            onClick={() => {console.log(currentPage); setCurrentPage(currentPage + 1);}}
+                            onClick={() => setCurrentPage(currentPage + 1)}
                         >
                             Next
                         </button>
