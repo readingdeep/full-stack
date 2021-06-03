@@ -13,11 +13,17 @@ export async function getBookById(bookId) {
 }
 
 export async function getParagraphsMood(paragraphs) {
-    const response = await axios.post(`https://readingdeep-inference.herokuapp.com/`, JSON.stringify(paragraphs), {
-        headers: {
-            'Access-Control-Allow-Origin' : '*',
-            'Access-Control-Allow-Methods':'GET,PUT,POST,DELETE,PATCH,OPTIONS',
-        }
-    });
-    return response.data;
+    try {
+        const response = await axios.post(`https://readingdeep-inference.herokuapp.com/`, paragraphs, {
+            headers: {
+                'Access-Control-Allow-Origin' : '*',
+                'Access-Control-Allow-Methods':'GET,PUT,POST,DELETE,PATCH,OPTIONS',
+            }
+        });
+        return response.data;
+    } catch (err) {
+        console.log(err);
+    }
+    
+    
 }

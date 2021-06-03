@@ -11,7 +11,6 @@ const HomePage = () => {
     useEffect(() => {
         async function fetchBooks() {
             const response = await getBooks();
-            console.log(response)
             setBooks(response);
         }
         fetchBooks();
