@@ -30,6 +30,7 @@ const BookPage = () => {
 
     useEffect(() => {
         async function fetchBook(bookId) {
+            setLoading(true);
             const fetchedBook = await getBookById(bookId);
             setBook(fetchedBook);
             setBookPagesArray(fetchedBook.contents);
@@ -76,6 +77,16 @@ const BookPage = () => {
 
     }, [bookId, currentPage]);
 
+const nextPage = () => {
+    setCurrentPage(currentPage + 1);
+    audioElement.pause();
+}
+
+const previousPage = () => {
+    setCurrentPage(currentPage - 1);
+    audioElement.pause(); 
+}
+
     return (
         <div>
             {loading && "Loading..."}
@@ -89,14 +100,12 @@ const BookPage = () => {
                         onMouseLeave={() => audioElement.pause()}
                         onAuxClick={() => audioElement.pause()}
                     >
-                        {!loading && (
-                            <div>{bookPagesArray[currentPage - 1].text}</div>
-                        )}
+                    <div>{bookPagesArray[currentPage - 1].text}</div>
                     </div>
                     {currentPage > 1 && (
                         <button
                             type="button"
-                            onClick={() => setCurrentPage(currentPage - 1)}
+                            onClick={previousPage}
                         >
                             Previous
                         </button>
@@ -104,7 +113,7 @@ const BookPage = () => {
                     {currentPage < bookPagesArray.length && (
                         <button
                             type="button"
-                            onClick={() => setCurrentPage(currentPage + 1)}
+                            onClick={nextPage}
                         >
                             Next
                         </button>
