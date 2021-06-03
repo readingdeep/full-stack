@@ -1,4 +1,35 @@
 .book-wrapper {
-    border: 1px solid pink;
-    width: 15rem;
+    border: 0px solid lightblue;
+    width: 16rem;
+    border-radius: 5%;
+    background-color: rgb(240,240,240);
+    box-shadow: 3px 3px rgb(210,210,210);
+}
+
+.book-pic {
+    width: 7rem;
+    height: auto;
+}
+
+.book-title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 4rem;
+    margin-bottom: 1rem;
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.pic-wrapper {
+    height: 12rem;
+    margin-bottom: 1rem
+}
+
+.card-link {
+    text-decoration: none;
+}
+
+.card-link:hover {
+    font-weight: 600;
 }

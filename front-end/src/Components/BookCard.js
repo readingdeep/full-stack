@@ -6,13 +6,13 @@ const BookCard = (props) => {
     const { book } = props;
     return (
         <div className='d-flex flex-column m-3 p-3 book-wrapper'>
-            <div>
+            <div className='book-title'>
                 {book.title}
             </div>
-            <div>
-                <img src={book.pic} alt="book cover" />
+            <div className='pic-wrapper'>
+                <img className='book-pic' src={book.pic} alt="book cover" />
             </div>
-            <Link to={`/book/${book._id}`}>Read the book</Link>
+            <Link className='card-link' to={`/book/${book._id}`}>Read the book</Link>
         </div>
     )
 }

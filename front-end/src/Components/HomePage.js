@@ -3,6 +3,7 @@ import { useState } from 'react';
 import uuid from 'react-uuid';
 import { getBooks } from '../lib/booksApi';
 import BookCard from './BookCard';
+import './HomePage.css';
 
 const HomePage = () => {
 
@@ -17,7 +18,7 @@ const HomePage = () => {
     }, []);
 
     return (
-        <div>
+        <div className="books-lib">
             {books.map(book =>
                 <BookCard key={uuid()} book={book} />
             )}
