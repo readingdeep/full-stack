@@ -30,6 +30,7 @@ const BookPage = () => {
 
     useEffect(() => {
         async function fetchBook(bookId) {
+            setLoading(true);
             const fetchedBook = await getBookById(bookId);
             setBook(fetchedBook);
             setBookPagesArray(fetchedBook.contents);
@@ -76,6 +77,16 @@ const BookPage = () => {
 
     }, [bookId, currentPage]);
 
+const nextPage = () => {
+    setCurrentPage(currentPage + 1);
+    audioElement.pause();
+}
+
+const previousPage = () => {
+    setCurrentPage(currentPage - 1);
+    audioElement.pause(); 
+}
+
     return (
         <div>
             {loading && "Loading..."}
@@ -83,6 +94,7 @@ const BookPage = () => {
                 <div>
                     <h1>{book.title}</h1>
                     <h2>{book.author}</h2>
+<<<<<<< HEAD
                     <div className='d-flex flex-row pn'>
                         {currentPage > 1 && (
                                 <div className="prev">
@@ -115,6 +127,32 @@ const BookPage = () => {
                             </div>
                         )}
                     </div>
+=======
+                    <div 
+                        className="page"
+                        onMouseEnter={() => audioElement.play()}
+                        onMouseLeave={() => audioElement.pause()}
+                        onAuxClick={() => audioElement.pause()}
+                    >
+                    <div>{bookPagesArray[currentPage - 1].text}</div>
+                    </div>
+                    {currentPage > 1 && (
+                        <button
+                            type="button"
+                            onClick={previousPage}
+                        >
+                            Previous
+                        </button>
+                    )}
+                    {currentPage < bookPagesArray.length && (
+                        <button
+                            type="button"
+                            onClick={nextPage}
+                        >
+                            Next
+                        </button>
+                    )}
+>>>>>>> 1eebba45fc5945723f54e14f0de3ef3481acbc37
                 </div>
             )}
         </div>
