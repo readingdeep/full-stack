@@ -8,7 +8,7 @@ const BookCard = (props) => {
             <div>
                 {props.book.name}
             </div>
-            <Link to={`/book/${props.book.id}`}>Read the book</Link>
+            <Link to={`/book/${props.book.id}`}>Read</Link>
         </div>
     )
 }
